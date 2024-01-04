@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Spritr - Online sprite maker</title>
+    <link
+      rel="stylesheet"
+      href="style.css"
+      type="text/css"
+      media="screen"
+      charset="utf-8"
+    />
+  </head>
+  <body>
+    <header>
+      <div>
+        <a href="https://github.com/execiel">execiel.github.io/</a></p>
+        <h1>SPRITR</h1>
+      </div>
+    </header>
+    <section id="main-container">
+      <aside id="toolbox-container">
+        <p>Options:</p>
+        <button onclick="createNewImageOverlay()">new</button>
+        <button onclick="createSaveOverlay()">save</button>
+        <button onclick="load()">load</button>
+        <button onclick="undo()">undo</button>
+        <button onclick="setBackground()">set bg</button>
+        <p>Color:</p>
+        <input class="color-input" onchange="setColor(this.value)" type="color" value="#FFFFFF" />
+      </aside>
+      <div id="canvas-container">
+        <canvas width="700" height="700" id="drawing-canvas"></canvas>
+      </div>
+    </section>
+    <footer>
+      <div>
+        <p>
+          Created 2022 by <a href="https://github.com/execiel">Execiel</a>. The
+          colorscheme used is
+          <a href="https://github.com/morhetz/gruvbox">Gruvbox by morhetz</a>.
+          And the fonts are
+          <a href="https://fonts.google.com/specimen/Silkscreen"
+            >Silkscreen by Jason Kottke</a
+          >
+          and
+          <a href="https://fonts.google.com/specimen/Press+Start+2P"
+            >Press Start 2P by CodeMan38</a
+          >.
+        </p>
+      </div>
+    </footer>
+    <script src="main.js"></script>
+    <script src="save.js"></script>
+  </body>
+</html>
