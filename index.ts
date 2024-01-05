@@ -12,15 +12,20 @@ dotenv.config();
 
 // Use JSON
 app.use(bodyparser.json());
+app.use(express.static(__dirname + "/public"));
+
+app.get("/", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "/public/home.html"));
+});
+
+app.get("/editor", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "/public/editor.html"));
+});
 
 interface PostTest {
   name: string;
   age: number;
 }
-
-app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "/public/home.html"));
-});
 
 app.post("/api/TestPost", (req: Request<{}, {}, PostTest>, res: Response) => {
   console.log(req.body);
