@@ -16,6 +16,8 @@
   --main-fg: #a89984;
   --second-fg: #ebdbb2;
 
+  --error-fg: #d97c7c;
+
   --head-font: "Press Start 2P", cursive;
   --text-font: "Silkscreen", cursive;
 
@@ -53,6 +55,10 @@ h6 {
   font-family: var(--head-font);
 }
 
+.error {
+  color: var(--error-fg);
+}
+
 a {
   color: var(--second-fg);
   text-decoration: none;
@@ -82,17 +88,17 @@ button:hover {
 header {
   color: var(--header-color);
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: var(--second-bg);
 }
 
-header * {
+header > .text-div * {
   margin: 0px;
   padding: 0px;
 }
 
-header > div {
+header > .text-div {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -169,6 +175,7 @@ input {
   padding: 15px;
   font-family: var(--text-font);
   border: none;
+  margin: 10px;
 }
 
 input[type="color"] {

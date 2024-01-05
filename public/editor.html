@@ -14,9 +14,13 @@
   </head>
   <body>
     <header>
-      <div>
+      <div class="text-div">
         <h1>SPRITR</h1>
         <p>Online sprite editor</p>
+      </div>
+      <div class="button-div">
+        <button onclick="createPublishOverlay()">Publish</button>
+        <button href="/">Explore</button>
       </div>
     </header>
     <section id="main-container">
@@ -39,6 +43,7 @@
         <canvas width="700" height="700" id="drawing-canvas"></canvas>
       </div>
     </section>
+    <script src="scripts/util.js"></script>
     <script src="scripts/editor.js"></script>
     <script src="scripts/save.js"></script>
   </body>

@@ -122,11 +122,35 @@ function setColor(color) {
   currentColor = color;
 }
 
-function createOverlay(html) {
-  overlay = document.createElement("div");
-  overlay.id = "overlay";
-  overlay.innerHTML = html;
-  document.body.append(overlay);
+function publish() {
+  console.log("Publish");
+  let title = document.querySelector("#title-in").value;
+  let alias = document.querySelector("#alias-in").value;
+  const error = document.querySelector(".error");
+
+  if (!title || !alias) {
+    error.innerHTML = "You need a name and an alias";
+    return;
+  }
+
+  if (alias.includes(" ")) {
+    error.innerHTML = "You cant have blank space in your alias";
+    return;
+  }
+
+  postData("/api/publish", { title: title, alias: alias, cells: cells }).then(
+    (data) => {
+      console.log(data);
+    }
+  );
+
+  if (overlay) overlay.remove();
+}
+
+function createPublishOverlay() {
+  createOverlay(
+    "<div><h3>Publish your work</h3><p>You can only publish five times a day, and you cant remove published work</p><input id='title-in' type='text' placeholder='Name of your work'></input><input type='text' id='alias-in' placeholder='Your alias'></input><p class='error'></p><button onclick='publish()'>Publish!</button></div>"
+  );
 }
 
 function createNewImageOverlay() {

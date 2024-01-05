@@ -2,6 +2,9 @@ import express, { Request, Response } from "express";
 import * as path from "path";
 import bodyparser from "body-parser";
 import dotenv from "dotenv";
+import routes from "./routes";
+import requests from "./requests";
+import { connectDatabase } from "./util/database";
 
 // Setup
 const app = express();
@@ -14,22 +17,14 @@ dotenv.config();
 app.use(bodyparser.json());
 app.use(express.static(__dirname + "/public"));
 
-app.get("/", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "/public/home.html"));
-});
+// Connect to database
+connectDatabase();
 
-app.get("/editor", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "/public/editor.html"));
-});
+// call routes
+routes(app);
 
-interface PostTest {
-  name: string;
-  age: number;
-}
-
-app.post("/api/TestPost", (req: Request<{}, {}, PostTest>, res: Response) => {
-  console.log(req.body);
-});
+// Call requests
+requests(app);
 
 app.listen(process.env.PORT, () =>
   console.log(`listening on port: ${process.env.PORT}`)
