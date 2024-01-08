@@ -2,7 +2,7 @@ import { PublishData, CellData } from "./util/types";
 import { Request, Response } from "express";
 import spriteModel from "./util/models/sprite";
 
-export default function requests(app: any) {
+export default function api(app: any) {
   app.get("/api/getNewest", async (req: Request, res: Response) => {
     try {
       let sprites = await spriteModel.find().sort({ $natural: -1 });
@@ -41,13 +41,12 @@ export default function requests(app: any) {
       const { title, alias, cells } = req.body;
       try {
         // Validate information
-        // TODO: Make sure user hasn't posted more than five times that day
         if (!title || !alias || !cells) {
           console.log("Values undefined in /api/publish");
           return res.json({ status: "bad", message: "Something went wrong" });
         }
 
-        if (title.length > 200 || alias.length > 50) {
+        if (title.length > 20 || alias.length > 12) {
           return res.json({ status: "bad", message: "title or alias to long" });
         }
 
