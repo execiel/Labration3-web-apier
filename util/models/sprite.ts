@@ -6,6 +6,7 @@ const spriteSchema = new Schema({
   alias: { required: true, type: String },
   rating: { default: 0, required: true, type: Number },
   cells: { required: true, type: Array<CellData> },
+  date: { default: new Date(), required: true, type: Date },
 });
 
 const spriteModel = mongoose.model("Sprite", spriteSchema);

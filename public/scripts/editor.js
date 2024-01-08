@@ -140,11 +140,14 @@ function publish() {
 
   postData("/api/publish", { title: title, alias: alias, cells: cells }).then(
     (data) => {
-      console.log(data);
+      if (data.status != "ok") {
+        error.innerHTML = data.message;
+        return;
+      }
+
+      if (overlay) overlay.remove();
     }
   );
-
-  if (overlay) overlay.remove();
 }
 
 function createPublishOverlay() {
